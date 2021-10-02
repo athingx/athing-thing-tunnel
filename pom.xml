@@ -95,7 +95,6 @@
 
     <modules>
         <module>tunnel-api</module>
-        <module>tunnel-boot</module>
         <module>tunnel-core</module>
         <module>tunnel-component</module>
         <module>tunnel-agent</module>

@@ -1,6 +1,7 @@
 package com.github.athingx.athing.aliyun.tunnel.core.channel;
 
-import com.github.athingx.athing.aliyun.tunnel.core.*;
+import com.github.athingx.athing.aliyun.tunnel.core.Tunnel;
+import com.github.athingx.athing.aliyun.tunnel.core.TunnelConfig;
 import com.github.athingx.athing.aliyun.tunnel.core.protocol.TerminalHandshakeRequestBody;
 import com.github.athingx.athing.aliyun.tunnel.core.protocol.TunnelMessage;
 import com.github.athingx.athing.aliyun.tunnel.core.protocol.TunnelMessageType;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;

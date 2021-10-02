@@ -1,6 +1,7 @@
 package com.github.athingx.athing.aliyun.tunnel.core.channel;
 
-import com.github.athingx.athing.aliyun.tunnel.core.*;
+import com.github.athingx.athing.aliyun.tunnel.core.Tunnel;
+import com.github.athingx.athing.aliyun.tunnel.core.TunnelConfig;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
@@ -16,7 +17,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.security.KeyStore;
 import java.security.cert.CertificateFactory;
-import java.util.Set;
 import java.util.UUID;
 
 import static io.netty.handler.codec.http.websocketx.WebSocketClientHandshakerFactory.newHandshaker;

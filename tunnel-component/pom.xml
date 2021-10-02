@@ -12,6 +12,11 @@
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
+            <groupId>com.github.athingx.athing.aliyun</groupId>
+            <artifactId>athing-aliyun-thing-runtime</artifactId>
+            <version>${athing.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>
             <artifactId>tunnel-api</artifactId>
             <version>${project.version}</version>
@@ -20,11 +25,6 @@
             <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>
             <artifactId>tunnel-core</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.athingx.athing.aliyun</groupId>
-            <artifactId>athing-aliyun-thing-runtime</artifactId>
-            <version>${athing.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
