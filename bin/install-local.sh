@@ -1,6 +1,6 @@
 #!/bin/bash
 
-projects[i++]="com.github.athingx.athing.aliyun.tunnel:tunnel-component"
+projects[i++]="com.github.athingx.athing.aliyun.tunnel:tunnel-thing"
 
 mvn clean install \
   -f ../pom.xml \

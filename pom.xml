@@ -94,9 +94,8 @@
     </build>
 
     <modules>
-        <module>tunnel-api</module>
         <module>tunnel-core</module>
-        <module>tunnel-component</module>
+        <module>tunnel-thing</module>
         <module>tunnel-agent</module>
     </modules>
 </project>

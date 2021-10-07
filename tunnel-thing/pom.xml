@@ -8,18 +8,13 @@
         <artifactId>tunnel</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>tunnel-component</artifactId>
+    <artifactId>tunnel-thing</artifactId>
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
             <groupId>com.github.athingx.athing.aliyun</groupId>
             <artifactId>athing-aliyun-thing-runtime</artifactId>
             <version>${athing.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>
-            <artifactId>tunnel-api</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>

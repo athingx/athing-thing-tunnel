@@ -1,13 +1,13 @@
-package com.github.athingx.athing.aliyun.tunnel.component;
+package com.github.athingx.athing.aliyun.tunnel.thing.component.impl;
 
 import com.github.athingx.athing.aliyun.thing.runtime.ThingRuntime;
 import com.github.athingx.athing.aliyun.thing.runtime.ThingRuntimes;
 import com.github.athingx.athing.aliyun.thing.runtime.access.ThingAccess;
 import com.github.athingx.athing.aliyun.thing.runtime.mqtt.ThingMqtt;
-import com.github.athingx.athing.aliyun.tunnel.api.TunnelThingCom;
-import com.github.athingx.athing.aliyun.tunnel.component.domain.Debug;
 import com.github.athingx.athing.aliyun.tunnel.core.Tunnel;
 import com.github.athingx.athing.aliyun.tunnel.core.TunnelConfig;
+import com.github.athingx.athing.aliyun.tunnel.thing.component.TunnelThingCom;
+import com.github.athingx.athing.aliyun.tunnel.thing.component.impl.domain.Debug;
 import com.github.athingx.athing.standard.thing.Thing;
 import com.github.athingx.athing.standard.thing.boot.Disposable;
 import com.github.athingx.athing.standard.thing.boot.Initializing;
