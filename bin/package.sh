@@ -1,7 +1,7 @@
 #!/bin/bash
 
-projects[i++]="com.github.athingx.athing.aliyun.tunnel:tunnel-boot"
-projects[i++]="com.github.athingx.athing.aliyun.tunnel:tunnel-agent"
+projects[i++]="io.github.athingx.athing.aliyun.tunnel:tunnel-app"
+projects[i++]="io.github.athingx.athing.aliyun.tunnel:tunnel-thing-impl"
 
 # maven package boot projects
 mvn clean package \
