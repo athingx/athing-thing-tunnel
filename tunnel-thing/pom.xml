@@ -4,7 +4,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>
+        <groupId>io.github.athingx.athing.aliyun.tunnel</groupId>
         <artifactId>tunnel</artifactId>
         <version>${revision}</version>
     </parent>
@@ -12,19 +12,9 @@
     <name>${project.artifactId}</name>
     <dependencies>
         <dependency>
-            <groupId>com.github.athingx.athing.aliyun</groupId>
-            <artifactId>athing-aliyun-thing-runtime</artifactId>
+            <groupId>io.github.athingx.athing.standard</groupId>
+            <artifactId>athing-standard-component</artifactId>
             <version>${athing.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.athingx.athing.aliyun.tunnel</groupId>
-            <artifactId>tunnel-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
         </dependency>
     </dependencies>
 </project>
