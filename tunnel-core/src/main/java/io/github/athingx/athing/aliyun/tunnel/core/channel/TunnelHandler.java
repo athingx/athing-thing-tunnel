@@ -4,6 +4,7 @@ import io.github.athingx.athing.aliyun.tunnel.core.Tunnel;
 import io.github.athingx.athing.aliyun.tunnel.core.TunnelConfig;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.codec.http.HttpObjectAggregator;
@@ -25,7 +26,7 @@ import static io.netty.handler.codec.http.websocketx.WebSocketVersion.V13;
 /**
  * 隧道处理器
  */
-public class TunnelHandler implements ChannelHandler {
+public class TunnelHandler extends ChannelInboundHandlerAdapter {
 
     private final Tunnel tunnel;
     private final TunnelConfig config;
@@ -81,11 +82,6 @@ public class TunnelHandler implements ChannelHandler {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
 
-    }
-
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        ctx.fireExceptionCaught(cause);
     }
 
 }

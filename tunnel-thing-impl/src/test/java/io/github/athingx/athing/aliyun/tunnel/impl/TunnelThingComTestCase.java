@@ -2,10 +2,12 @@ package io.github.athingx.athing.aliyun.tunnel.impl;
 
 import io.github.athingx.athing.standard.thing.boot.ThingBoot;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class TunnelThingComTestCase extends ThingSupport {
 
+    @Ignore
     @Test
     public void debug$thing$tunnel() throws InterruptedException {
         synchronized (this) {
