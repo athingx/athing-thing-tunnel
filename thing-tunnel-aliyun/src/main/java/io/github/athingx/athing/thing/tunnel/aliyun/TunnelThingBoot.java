@@ -4,6 +4,7 @@ import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 import io.github.athingx.athing.standard.component.ThingCom;
 import io.github.athingx.athing.standard.thing.boot.ThingBoot;
 import io.github.athingx.athing.standard.thing.boot.ThingBootArgument;
+import org.kohsuke.MetaInfServices;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -15,6 +16,7 @@ import static java.lang.String.format;
 /**
  * 网络隧道设备组件引导程序
  */
+@MetaInfServices
 public class TunnelThingBoot implements ThingBoot {
 
     private final String xxx = "";

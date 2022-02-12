@@ -18,11 +18,10 @@ public class TunnelThingComTestCase extends ThingSupport {
     @Test
     public void test$thing$tunnel$boot() {
         final ThingBoot boot = new TunnelThingBoot();
-        Assert.assertEquals("athing", boot.getProperties().getProperty("manufacturer"));
-        Assert.assertEquals("athing-thing-tunnel", boot.getProperties().getProperty("model"));
-        Assert.assertEquals("aliyun", boot.getProperties().getProperty("framework"));
-        Assert.assertEquals("oldmanpushcart@gmail.com", boot.getProperties().getProperty("author"));
-        Assert.assertEquals("${project.version}", boot.getProperties().getProperty("version"));
+        Assert.assertEquals("${project.groupId}", boot.getProperties().getProperty(ThingBoot.PROP_GROUP));
+        Assert.assertEquals("${project.artifactId}", boot.getProperties().getProperty(ThingBoot.PROP_ARTIFACT));
+        Assert.assertEquals("${project.version}", boot.getProperties().getProperty(ThingBoot.PROP_VERSION));
+        Assert.assertEquals("aliyun", boot.getProperties().getProperty(ThingBoot.PROP_PLATFORM_LIMIT));
     }
 
 }
