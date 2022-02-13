@@ -17,14 +17,14 @@ import static java.lang.String.format;
  * 网络隧道设备组件引导程序
  */
 @MetaInfServices
-public class TunnelThingBoot implements ThingBoot {
+public class ThingTunnelBoot implements ThingBoot {
 
     private final String xxx = "";
 
     @Override
     public ThingCom[] boot(String productId, String thingId, ThingBootArgument arguments) throws Exception {
         return new ThingCom[]{
-                new TunnelThingComImpl(productId, thingId, toConfig(arguments))
+                new ThingTunnelComImpl(productId, thingId, toConfig(arguments))
         };
     }
 
@@ -106,7 +106,7 @@ public class TunnelThingBoot implements ThingBoot {
     @Override
     public Properties getProperties() {
         final Properties prop = ThingBoot.super.getProperties();
-        try (final InputStream in = TunnelThingBoot.class.getResourceAsStream("/io/github/athingx/athing/thing/tunnel/aliyun/thing-boot.properties")) {
+        try (final InputStream in = ThingTunnelBoot.class.getResourceAsStream("/io/github/athingx/athing/thing/tunnel/aliyun/thing-boot.properties")) {
             if (null != in) {
                 prop.load(in);
             }

@@ -1,3 +1,5 @@
+import io.github.athingx.athing.thing.tunnel.aliyun.ThingTunnelBoot;
+
 module io.github.athingx.athing.thing.tunnel.aliyun {
     requires io.github.athingx.athing.standard.thing;
     requires io.github.athingx.athing.aliyun.thing.runtime;
@@ -10,6 +12,6 @@ module io.github.athingx.athing.thing.tunnel.aliyun {
     exports io.github.athingx.athing.thing.tunnel.aliyun;
     opens io.github.athingx.athing.thing.tunnel.aliyun.domain to com.google.gson;
 
-    provides io.github.athingx.athing.standard.thing.boot.ThingBoot with io.github.athingx.athing.thing.tunnel.aliyun.TunnelThingBoot;
+    provides io.github.athingx.athing.standard.thing.boot.ThingBoot with ThingTunnelBoot;
 
 }

@@ -52,7 +52,7 @@ public class ThingSupport {
 
     private static Thing initPuppetThing() throws Exception {
         final Thing thing = new ThingBuilder(new URI($("athing.thing.server-url")), THING_ACCESS)
-                .load((productId, thingId) -> new TunnelThingBoot().boot(
+                .load((productId, thingId) -> new ThingTunnelBoot().boot(
                         PRODUCT_ID,
                         THING_ID,
                         ThingBootArgument.parse("service.name=LOCAL_SSH&service-LOCAL_SSH.type=SSH&service-LOCAL_SSH.ip=127.0.0.1&service-LOCAL_SSH.port=22&service-LOCAL_SSH.connect-timeout=3000")

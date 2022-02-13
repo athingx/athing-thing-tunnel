@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder;
 import io.github.athingx.athing.aliyun.thing.runtime.ThingRuntime;
 import io.github.athingx.athing.aliyun.thing.runtime.access.ThingAccess;
 import io.github.athingx.athing.aliyun.thing.runtime.linker.ThingLinker;
-import io.github.athingx.athing.thing.tunnel.TunnelThingCom;
+import io.github.athingx.athing.thing.tunnel.ThingTunnelCom;
 import io.github.athingx.athing.thing.tunnel.aliyun.domain.Debug;
 import io.github.athingx.athing.standard.thing.Thing;
 import io.github.athingx.athing.standard.thing.ThingLifeCycle;
@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
-class TunnelThingComImpl implements TunnelThingCom, ThingLifeCycle {
+class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final Gson gson = new GsonBuilder().create();
@@ -29,7 +29,7 @@ class TunnelThingComImpl implements TunnelThingCom, ThingLifeCycle {
     @Inject
     private ThingRuntime runtime;
 
-    public TunnelThingComImpl(String productId, String thingId, TunnelConfig config) throws URISyntaxException {
+    public ThingTunnelComImpl(String productId, String thingId, TunnelConfig config) throws URISyntaxException {
         this.config = config;
         this.tunnel = new Tunnel(String.format("/%s/%s/tunnel", productId, thingId), config);
     }

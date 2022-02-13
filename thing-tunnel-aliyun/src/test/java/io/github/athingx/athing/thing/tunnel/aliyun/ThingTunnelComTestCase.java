@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class TunnelThingComTestCase extends ThingSupport {
+public class ThingTunnelComTestCase extends ThingSupport {
 
     @Ignore
     @Test
@@ -17,7 +17,7 @@ public class TunnelThingComTestCase extends ThingSupport {
 
     @Test
     public void test$thing$tunnel$boot() {
-        final ThingBoot boot = new TunnelThingBoot();
+        final ThingBoot boot = new ThingTunnelBoot();
         Assert.assertEquals("${project.groupId}", boot.getProperties().getProperty(ThingBoot.PROP_GROUP));
         Assert.assertEquals("${project.artifactId}", boot.getProperties().getProperty(ThingBoot.PROP_ARTIFACT));
         Assert.assertEquals("${project.version}", boot.getProperties().getProperty(ThingBoot.PROP_VERSION));
