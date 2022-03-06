@@ -80,7 +80,7 @@ class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
                 + ";threads=" + config.getThreads()
                 + ";connect-timeout=" + config.getConnect().getConnectTimeoutMs() + "ms"
                 + ";handshake-timeout" + config.getConnect().getHandshakeTimeoutMs() + "ms"
-                + ";idle-duration=" + config.getConnect().getIdleDurationMs() + "ms"
+                + ";idle-duration=" + config.getConnect().getIdleIntervalMs() + "ms"
                 + ";ping-interval=" + config.getConnect().getPingIntervalMs() + "ms"
                 + ";reconnect-interval=" + config.getConnect().getReconnectIntervalMs() + "ms";
     }

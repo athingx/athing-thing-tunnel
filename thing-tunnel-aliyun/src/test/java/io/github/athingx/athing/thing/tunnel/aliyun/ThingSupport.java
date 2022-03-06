@@ -55,7 +55,7 @@ public class ThingSupport {
                 .load((productId, thingId) -> new ThingTunnelBoot().boot(
                         PRODUCT_ID,
                         THING_ID,
-                        ThingBootArgument.parse("service.name=LOCAL_SSH&service-LOCAL_SSH.type=SSH&service-LOCAL_SSH.ip=127.0.0.1&service-LOCAL_SSH.port=22&service-LOCAL_SSH.connect-timeout=3000")
+                        ThingBootArgument.parse("threads=1&connect.remote=wss%3A%2F%2Fbackend-iotx-remote-debug.aliyun.com%3A443&connect.timeout_ms=10000&connect.handshake_timeout_ms=10000&connect.ping_interval_ms=30000&connect.retry_interval_ms=30000&connect.idle_interval_ms=900000&service.local_ssh.type=SSH&service.local_ssh.ip=127.0.0.1&service.local_ssh.port=22&service.local_ssh.option.connect_timeout_ms=10000")
                 ))
                 .build();
         reconnect(thing);

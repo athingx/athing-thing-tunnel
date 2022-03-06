@@ -40,7 +40,7 @@ public class TunnelProtocolHandler extends SimpleChannelInboundHandler<TunnelMes
 
         // 如果Ra终端闲置了一段时间内，没有读写请求的触发，将会主动的被关闭
         if (evt instanceof IdleStateEvent && ((IdleStateEvent) evt).state() == IdleState.ALL_IDLE) {
-            logger.warn("{} is idle duration {}ms, connection will be close", tunnel, config.getConnect().getIdleDurationMs());
+            logger.warn("{} is idle duration {}ms, connection will be close", tunnel, config.getConnect().getIdleIntervalMs());
             final Thread hook = new Thread(tunnel::destroy, "ra-terminal-shutdown-hook");
             hook.setDaemon(true);
             hook.start();

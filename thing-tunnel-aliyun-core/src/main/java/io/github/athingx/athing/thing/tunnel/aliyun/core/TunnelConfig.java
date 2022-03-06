@@ -19,7 +19,7 @@ public class TunnelConfig {
     /**
      * 隧道连接
      */
-    private Connect connect = new Connect();
+    private final Connect connect = new Connect();
 
     /**
      * 隧道服务清单
@@ -44,10 +44,6 @@ public class TunnelConfig {
 
     public Connect getConnect() {
         return connect;
-    }
-
-    public void setConnect(Connect connect) {
-        this.connect = connect;
     }
 
     public Set<Service> getServices() {
@@ -152,25 +148,12 @@ public class TunnelConfig {
 
     /**
      * 隧道访问
+     *
+     * @param productId 产品ID
+     * @param thingId   设备ID
+     * @param secret    设备密码
      */
-    public static class Access {
-
-        private final String productId;
-        private final String thingId;
-        private final String secret;
-
-        /**
-         * 隧道访问
-         *
-         * @param productId 产品ID
-         * @param thingId   设备ID
-         * @param secret    设备密码
-         */
-        public Access(String productId, String thingId, String secret) {
-            this.productId = productId;
-            this.thingId = thingId;
-            this.secret = secret;
-        }
+    public record Access(String productId, String thingId, String secret) {
 
         public String getProductId() {
             return productId;
@@ -219,7 +202,7 @@ public class TunnelConfig {
         /**
          * 隧道服务器空闲持续时间，默认15分钟
          */
-        private long idleDurationMs = 15L * 60 * 1000;
+        private long idleIntervalMs = 15L * 60 * 1000;
 
         public String getRemote() {
             return remote;
@@ -261,12 +244,12 @@ public class TunnelConfig {
             this.reconnectIntervalMs = reconnectIntervalMs;
         }
 
-        public long getIdleDurationMs() {
-            return idleDurationMs;
+        public long getIdleIntervalMs() {
+            return idleIntervalMs;
         }
 
-        public void setIdleDurationMs(long idleDurationMs) {
-            this.idleDurationMs = idleDurationMs;
+        public void setIdleIntervalMs(long idleIntervalMs) {
+            this.idleIntervalMs = idleIntervalMs;
         }
 
     }

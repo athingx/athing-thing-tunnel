@@ -75,7 +75,7 @@ public class TunnelHandler extends ChannelInboundHandlerAdapter {
                 new TunnelLoggingHandler(),
                 new TunnelHandshakeHandler(tunnel, config),
                 new TunnelPingHandler(config),
-                new IdleStateHandler(0, 0, (int) (config.getConnect().getIdleDurationMs() / 1000)),
+                new IdleStateHandler(0, 0, (int) (config.getConnect().getIdleIntervalMs() / 1000)),
                 new TunnelProtocolHandler(tunnel, config)
         );
     }
