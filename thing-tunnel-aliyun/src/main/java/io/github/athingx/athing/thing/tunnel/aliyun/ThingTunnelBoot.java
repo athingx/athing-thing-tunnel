@@ -4,7 +4,6 @@ import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 import io.github.athingx.athing.standard.component.ThingCom;
 import io.github.athingx.athing.standard.thing.boot.ThingBoot;
 import io.github.athingx.athing.standard.thing.boot.ThingBootArgument;
-import org.kohsuke.MetaInfServices;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -20,7 +19,6 @@ import static java.lang.String.format;
  * threads=1&connect.remote=wss%3A%2F%2Fbackend-iotx-remote-debug.aliyun.com%3A443&connect.connect_timeout_ms=10000&connect.handshake_timeout_ms=10000&connect.ping_interval_ms=30000&connect.reconnect_interval_ms=30000&connect.idle_duration_ms=900000&service.local_ssh.type=SSH&service.local_ssh.ip=127.0.0.1&service.local_ssh.port=22&service.local_ssh.option.connect_timeout_ms=10000
  * </p>
  */
-@MetaInfServices
 public class ThingTunnelBoot implements ThingBoot {
 
     @Override

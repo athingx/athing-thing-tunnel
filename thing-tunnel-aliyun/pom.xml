@@ -15,10 +15,16 @@
         <finalName>${project.name}-${project.version}</finalName>
         <resources>
             <resource>
-                <directory>/src/main/resources</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>io/github/athingx/athing/aliyun/tunnel/impl/tunnel-thing-boot.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>META-INF/**/*</include>
                 </includes>
             </resource>
         </resources>
@@ -68,20 +74,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>io.github.athingx.athing.thing.tunnel</groupId>
             <artifactId>thing-tunnel-aliyun-core</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kohsuke.metainf-services</groupId>
-            <artifactId>metainf-services</artifactId>
-            <version>1.8</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
         </dependency>
 
         <!-- 测试用 -->
@@ -94,7 +95,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.10</version>
+            <version>1.2.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>

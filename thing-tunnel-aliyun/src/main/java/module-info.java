@@ -7,7 +7,6 @@ module io.github.athingx.athing.thing.tunnel.aliyun {
     requires io.github.athingx.athing.thing.tunnel.aliyun.core;
     requires com.google.gson;
     requires org.slf4j;
-    requires static metainf.services;
 
     exports io.github.athingx.athing.thing.tunnel.aliyun;
     opens io.github.athingx.athing.thing.tunnel.aliyun.domain to com.google.gson;
