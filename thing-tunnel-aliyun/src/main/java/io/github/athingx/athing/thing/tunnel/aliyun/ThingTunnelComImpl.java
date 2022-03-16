@@ -35,16 +35,11 @@ class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
     }
 
     @Override
-    public void onDestroyed() {
-        if (null != tunnel) {
-            tunnel.destroy();
-        }
-    }
+    public void onLoaded(Thing thing) throws Exception {
 
-    @Override
-    public void onLoaded() throws Exception {
+        // 设备销毁时候，同时销毁通道
+        thing.getDestroyFuture().onDone(future->tunnel.destroy());
 
-        final Thing thing = runtime.getThing();
         final ThingLinker linker = runtime.getThingLinker();
 
         // 配置设备接入
