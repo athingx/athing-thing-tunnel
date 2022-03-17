@@ -1,11 +1,10 @@
 package io.github.athingx.athing.thing.tunnel.aliyun;
 
-import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 import io.github.athingx.athing.standard.component.ThingCom;
 import io.github.athingx.athing.standard.thing.boot.ThingBoot;
 import io.github.athingx.athing.standard.thing.boot.ThingBootArgument;
+import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,38 +29,25 @@ public class ThingTunnelBoot implements ThingBoot {
 
     private TunnelConfig toConfig(ThingBootArgument arguments) {
         final TunnelConfig config = new TunnelConfig();
-        if (arguments.hasArguments("threads")) {
-            config.setThreads(arguments.getArgument("threads", cInt));
+        if (null != arguments) {
+            arguments.optionArgument("threads", cInt, config::setThreads);
+
+            // 配置连接参数
+            configConnect(config.getConnect(), arguments);
+
+            // 配置隧道服务
+            configServiceSet(config.getServices(), arguments);
         }
-
-        // 配置连接参数
-        configConnect(config.getConnect(), arguments);
-
-        // 配置隧道服务
-        configServiceSet(config.getServices(), arguments);
-
         return config;
     }
 
     private void configConnect(TunnelConfig.Connect connect, ThingBootArgument arguments) {
-        if (arguments.hasArguments("connect.remote")) {
-            connect.setRemote(arguments.getArgument("connect.remote", cString));
-        }
-        if (arguments.hasArguments("connect.timeout_ms")) {
-            connect.setConnectTimeoutMs(arguments.getArgument("connect.timeout_ms", cLong));
-        }
-        if (arguments.hasArguments("connect.handshake_timeout_ms")) {
-            connect.setHandshakeTimeoutMs(arguments.getArgument("connect.handshake_timeout_ms", cLong));
-        }
-        if (arguments.hasArguments("connect.retry_interval_ms")) {
-            connect.setReconnectIntervalMs(arguments.getArgument("connect.retry_interval_ms", cLong));
-        }
-        if (arguments.hasArguments("connect.ping_interval_ms")) {
-            connect.setPingIntervalMs(arguments.getArgument("connect.ping_interval_ms", cLong));
-        }
-        if (arguments.hasArguments("connect.idle_interval_ms")) {
-            connect.setIdleIntervalMs(arguments.getArgument("connect.idle_interval_ms", cLong));
-        }
+        arguments.optionArgument("connect.remote", cString, connect::setRemote);
+        arguments.optionArgument("connect.timeout_ms", cLong, connect::setConnectTimeoutMs);
+        arguments.optionArgument("connect.handshake_timeout_ms", cLong, connect::setHandshakeTimeoutMs);
+        arguments.optionArgument("connect.retry_interval_ms", cLong, connect::setReconnectIntervalMs);
+        arguments.optionArgument("connect.ping_interval_ms", cLong, connect::setPingIntervalMs);
+        arguments.optionArgument("connect.idle_interval_ms", cLong, connect::setIdleIntervalMs);
     }
 
     /**
@@ -79,7 +65,7 @@ public class ThingTunnelBoot implements ThingBoot {
                 .collect(Collectors.toSet());
 
         // 组装服务参数
-        names.forEach(name->{
+        names.forEach(name -> {
 
             // 参数完整性检查
             if (!arguments.hasArguments(
@@ -99,9 +85,7 @@ public class ThingTunnelBoot implements ThingBoot {
             );
 
             // 组装服务选项
-            if(arguments.hasArguments(format("service.%s.option.connect_timeout_ms", name))) {
-                service.getOption().setConnectTimeoutMs(arguments.getArgument(format("service.%s.option.connect_timeout_ms", name), cLong));
-            }
+            arguments.optionArgument(format("service.%s.option.connect_timeout_ms", name), cLong, service.getOption()::setConnectTimeoutMs);
 
             // 添加服务
             services.add(service);
@@ -112,15 +96,10 @@ public class ThingTunnelBoot implements ThingBoot {
 
     @Override
     public Properties getProperties() {
-        final Properties prop = ThingBoot.super.getProperties();
-        try (final InputStream in = ThingTunnelBoot.class.getResourceAsStream("/io/github/athingx/athing/thing/tunnel/aliyun/thing-boot.properties")) {
-            if (null != in) {
-                prop.load(in);
-            }
-        } catch (Exception cause) {
-            // ignore...
-        }
-        return prop;
+        return new Properties(){{
+           put(PROP_GROUP, "io.github.athingx.athing.thing.tunnel");
+           put(PROP_ARTIFACT, "thing-tunnel-aliyun");
+        }};
     }
 
 }

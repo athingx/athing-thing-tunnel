@@ -13,21 +13,6 @@
 
     <build>
         <finalName>${project.name}-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>io/github/athingx/athing/thing/tunnel/aliyun/thing-boot.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>META-INF/**/*</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
