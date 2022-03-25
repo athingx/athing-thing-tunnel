@@ -1,17 +1,17 @@
 package io.github.athingx.athing.thing.tunnel.aliyun;
 
-import io.github.athingx.athing.thing.tunnel.aliyun.core.Tunnel;
-import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.github.athingx.athing.aliyun.thing.runtime.ThingRuntime;
 import io.github.athingx.athing.aliyun.thing.runtime.access.ThingAccess;
 import io.github.athingx.athing.aliyun.thing.runtime.linker.ThingLinker;
-import io.github.athingx.athing.thing.tunnel.ThingTunnelCom;
-import io.github.athingx.athing.thing.tunnel.aliyun.domain.Debug;
 import io.github.athingx.athing.standard.thing.Thing;
 import io.github.athingx.athing.standard.thing.ThingLifeCycle;
-import io.github.athingx.athing.standard.thing.boot.Inject;
+import io.github.athingx.athing.standard.thing.boot.ThInject;
+import io.github.athingx.athing.thing.tunnel.ThingTunnelCom;
+import io.github.athingx.athing.thing.tunnel.aliyun.core.Tunnel;
+import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
+import io.github.athingx.athing.thing.tunnel.aliyun.domain.Debug;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
     private final TunnelConfig config;
     private final Tunnel tunnel;
 
-    @Inject
+    @ThInject
     private ThingRuntime runtime;
 
     public ThingTunnelComImpl(String productId, String thingId, TunnelConfig config) throws URISyntaxException {
