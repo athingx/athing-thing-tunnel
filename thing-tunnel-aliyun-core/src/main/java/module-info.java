@@ -9,6 +9,6 @@ module io.github.athingx.athing.thing.tunnel.aliyun.core {
     requires org.slf4j;
     requires com.google.gson;
 
-    exports io.github.athingx.athing.thing.tunnel.aliyun.core to io.github.athingx.athing.thing.tunnel.aliyun;
+    exports io.github.athingx.athing.thing.tunnel.aliyun.core;
     opens io.github.athingx.athing.thing.tunnel.aliyun.core.protocol to com.google.gson;
 }

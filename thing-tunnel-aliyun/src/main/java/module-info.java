@@ -1,8 +1,9 @@
 module io.github.athingx.athing.thing.tunnel.aliyun {
+    requires transitive io.github.athingx.athing.thing.tunnel;
+    requires transitive io.github.athingx.athing.thing.tunnel.aliyun.core;
     requires io.github.athingx.athing.standard.thing;
     requires io.github.athingx.athing.aliyun.thing.runtime;
-    requires io.github.athingx.athing.thing.tunnel;
-    requires io.github.athingx.athing.thing.tunnel.aliyun.core;
+
     requires com.google.gson;
     requires org.slf4j;
 
