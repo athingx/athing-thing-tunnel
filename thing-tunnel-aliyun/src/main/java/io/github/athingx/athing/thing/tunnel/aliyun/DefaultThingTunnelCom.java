@@ -6,8 +6,7 @@ import io.github.athingx.athing.aliyun.thing.runtime.ThingRuntime;
 import io.github.athingx.athing.aliyun.thing.runtime.access.ThingAccess;
 import io.github.athingx.athing.aliyun.thing.runtime.linker.ThingLinker;
 import io.github.athingx.athing.standard.thing.Thing;
-import io.github.athingx.athing.standard.thing.ThingLifeCycle;
-import io.github.athingx.athing.standard.thing.boot.ThInject;
+import io.github.athingx.athing.standard.thing.ThingComListener;
 import io.github.athingx.athing.thing.tunnel.ThingTunnelCom;
 import io.github.athingx.athing.thing.tunnel.aliyun.core.Tunnel;
 import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
@@ -15,30 +14,27 @@ import io.github.athingx.athing.thing.tunnel.aliyun.domain.Debug;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
-class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
+public class DefaultThingTunnelCom implements ThingTunnelCom, ThingComListener {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private final Gson gson = new GsonBuilder().create();
 
     private final TunnelConfig config;
-    private final Tunnel tunnel;
 
-    @ThInject
-    private ThingRuntime runtime;
-
-    public ThingTunnelComImpl(String productId, String thingId, TunnelConfig config) throws URISyntaxException {
+    public DefaultThingTunnelCom(final TunnelConfig config) {
         this.config = config;
-        this.tunnel = new Tunnel(String.format("/%s/%s/tunnel", productId, thingId), config);
     }
 
     @Override
     public void onLoaded(Thing thing) throws Exception {
 
+        final Gson gson = new GsonBuilder().create();
+        final ThingRuntime runtime = ThingRuntime.getInstance(thing);
+        final Tunnel tunnel = new Tunnel("/%s/tunnel".formatted(thing.getPath()), config);
+
         // 设备销毁时候，同时销毁通道
-        thing.getDestroyFuture().onDone(future->tunnel.destroy());
+        thing.getDestroyFuture().onDone(future -> tunnel.destroy());
 
         final ThingLinker linker = runtime.getThingLinker();
 
@@ -50,9 +46,9 @@ class ThingTunnelComImpl implements ThingTunnelCom, ThingLifeCycle {
         logger.info("{}/tunnel init completed, {}", thing, toString(config));
 
         // 订阅开关
-        linker.subscribe(String.format("/sys/%s/edge/debug/switch", thing.path()), (topic, json) -> {
+        linker.subscribe("/sys/%s/edge/debug/switch".formatted(thing.getPath()), (topic, json) -> {
             final Debug debug = gson.fromJson(json, Debug.class);
-            logger.info("{}/tunnel debug.switch={}", thing, debug.isEnable()?"OPEN":"CLOSE");
+            logger.info("{}/tunnel debug.switch={}", thing, debug.isEnable() ? "OPEN" : "CLOSE");
             if (debug.isEnable()) {
                 tunnel.connect();
                 logger.info("{}/tunnel is connect.", thing);

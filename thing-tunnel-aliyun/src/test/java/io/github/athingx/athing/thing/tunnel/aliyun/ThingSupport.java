@@ -1,9 +1,11 @@
 package io.github.athingx.athing.thing.tunnel.aliyun;
 
 import io.github.athingx.athing.aliyun.thing.ThingBuilder;
+import io.github.athingx.athing.aliyun.thing.runtime.ThingRuntime;
 import io.github.athingx.athing.aliyun.thing.runtime.access.ThingAccess;
 import io.github.athingx.athing.standard.thing.Thing;
-import io.github.athingx.athing.standard.thing.boot.ThingBootArgument;
+import io.github.athingx.athing.thing.tunnel.ThingTunnelCom;
+import io.github.athingx.athing.thing.tunnel.aliyun.core.TunnelConfig;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
@@ -12,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Properties;
+import java.util.concurrent.Executors;
 
 import static java.lang.String.format;
 
@@ -29,6 +32,7 @@ public class ThingSupport {
     );
 
     protected static Thing thing;
+    protected static ThingTunnelCom thingTunnelCom;
 
     @BeforeClass
     public static void initialization() throws Exception {
@@ -52,12 +56,22 @@ public class ThingSupport {
 
     private static Thing initPuppetThing() throws Exception {
         final Thing thing = new ThingBuilder(new URI($("athing.thing.server-url")), THING_ACCESS)
-                .load((productId, thingId) -> new ThingTunnelBoot().boot(
-                        PRODUCT_ID,
-                        THING_ID,
-                        ThingBootArgument.parse("threads=1&connect.remote=wss%3A%2F%2Fbackend-iotx-remote-debug.aliyun.com%3A443&connect.timeout_ms=10000&connect.handshake_timeout_ms=10000&connect.ping_interval_ms=30000&connect.retry_interval_ms=30000&connect.idle_interval_ms=900000&service.local_ssh.type=SSH&service.local_ssh.ip=127.0.0.1&service.local_ssh.port=22&service.local_ssh.option.connect_timeout_ms=10000")
-                ))
+                .executor(Executors.newFixedThreadPool(20))
                 .build();
+
+        final TunnelConfig config = new TunnelConfig();
+        final ThingRuntime runtime = ThingRuntime.getInstance(thing);
+        final ThingAccess access = runtime.getThingAccess();
+        config.setAccess(new TunnelConfig.Access(access.getProductId(), access.getThingId(), access.getSecret()));
+        config.setThreads(10);
+        config.getConnect().setConnectTimeoutMs(1000 * 10L);
+        config.getConnect().setHandshakeTimeoutMs(1000 * 10L);
+        config.getConnect().setIdleIntervalMs(1000 * 60 * 30L);
+        config.getConnect().setPingIntervalMs(1000 * 10L);
+        config.getConnect().setReconnectIntervalMs(1000 * 10L);
+        config.getConnect().setRemote("wss://backend-iotx-remote-debug.aliyun.com:443");
+        config.getServices().add(new TunnelConfig.Service("SSH", "SSH", "127.0.0.1", 22));
+        thing.load(thingTunnelCom = new DefaultThingTunnelCom(config));
         reconnect(thing);
         return thing;
     }
